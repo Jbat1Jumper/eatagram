@@ -1,0 +1,11 @@
+
+<template name="home">
+	<h1>You are logged in, cheers!</h1>
+	<button id="logout">Logout</button>
+	{{#if advanced}}
+		<button id="advanced">Hide this options, they will make me harm</button>
+		<button id="delete">Delete mah user</button>
+	{{else}}
+		<button id="advanced">Show advanced options</button>
+	{{/if}}
+</template>

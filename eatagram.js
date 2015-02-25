@@ -1,19 +1,40 @@
+Users = new Mongo.Collection("users");
+
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault("counter", 0);
+  Session.setDefault("page", "landing");
+  Session.setDefault("logged_user", null);
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get("counter");
+  Template.main.helpers({
+    page: function () {
+      return Session.get("page");
+    },
+    page_is: function(page) {
+      console.log("page_is "+page+"?");
+      return Session.get("page") == page;
+    },
+    is_logged: function() {
+      return Session.get("logged_user") != null;
     }
   });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set("counter", Session.get("counter") + 1);
+
+  Template.debug.helpers({
+    users: function() {
+      return Users.find();
+    },
+    current_page: function() {
+      return Session.get("page");
+    },
+    logged_user: function() {
+      return Session.get("logged_user");
     }
-  });
+  })
+
+  Template.debug.events({
+    "click #gotolanding": function() {
+      Session.set("page", "landing");
+    }
+  })
 }
 
 if (Meteor.isServer) {
