@@ -1,5 +1,3 @@
-Users = new Mongo.Collection("users");
-
 if (Meteor.isClient) {
   Session.setDefault("page", "landing");
   Session.setDefault("loggedUser", null);
