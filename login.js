@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
 
-  var login_user = function(uname, pass) {
+  var loginUser = function(uname, pass) {
       console.log("Your username is: " + uname);
       console.log("And your password is: " + pass);
 
@@ -17,7 +17,7 @@ if (Meteor.isClient) {
         return;
       }
       console.log("Successfully logged");
-      Session.set("logged_user", result.fetch()[0])
+      Session.set("loggedUser", result.fetch()[0])
       Session.set("page", "home");
   }
 
@@ -29,7 +29,7 @@ if (Meteor.isClient) {
       var uname = template.find("#username_input").value;
       var pass = template.find("#password_input").value;
       console.log("Yeah, give me your money you fkn button clicker");
-      login_user(uname, pass);
+      loginUser(uname, pass);
     },
     'keypress #password_input': function(event, template) {
       if(event.charCode != 13)
@@ -37,7 +37,7 @@ if (Meteor.isClient) {
       var uname = template.find("#username_input").value;
       var pass = template.find("#password_input").value;
       console.log("You pressed the fucking enter");
-      login_user(uname, pass);
+      loginUser(uname, pass);
     }
   });
 }

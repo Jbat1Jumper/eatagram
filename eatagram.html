@@ -11,16 +11,16 @@
 		<h3>A fancy header goes here... </h3>
 	</div>
 	<div style="background-color: #EEF">
-		{{#if is_logged}}
+		{{#if isLogged}}
 			{{> home}}
 		{{else}}
-			{{#if page_is "landing"}}
+			{{#if pageIs "landing"}}
 				{{> landing_page}}
 			{{/if}}
-			{{#if page_is "register"}}
+			{{#if pageIs "register"}}
 				{{> register_page}}
 			{{/if}}
-			{{#if page_is "login"}}
+			{{#if pageIs "login"}}
 				{{> login_page}}
 			{{/if}}
 		{{/if}}
@@ -39,7 +39,7 @@
 			<li>
 			{{username}} - {{password}}
 			</li>
-		{{/each}}	
+		{{/each}}
 		</ul>
 		<br/>
 		{{#if logged_user}}

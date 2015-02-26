@@ -2,18 +2,18 @@ Users = new Mongo.Collection("users");
 
 if (Meteor.isClient) {
   Session.setDefault("page", "landing");
-  Session.setDefault("logged_user", null);
+  Session.setDefault("loggedUser", null);
 
   Template.main.helpers({
     page: function () {
       return Session.get("page");
     },
-    page_is: function(page) {
+    pageIs: function(page) {
       console.log("page_is "+page+"?");
       return Session.get("page") == page;
     },
-    is_logged: function() {
-      return Session.get("logged_user") != null;
+    isLogged: function() {
+      return Session.get("loggedUser") != null;
     }
   });
 
@@ -22,11 +22,11 @@ if (Meteor.isClient) {
     users: function() {
       return Users.find();
     },
-    current_page: function() {
+    currentPage: function() {
       return Session.get("page");
     },
-    logged_user: function() {
-      return Session.get("logged_user");
+    loggedUser: function() {
+      return Session.get("loggedUser");
     }
   })
 
