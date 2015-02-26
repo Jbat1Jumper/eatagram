@@ -1,5 +1,5 @@
 if (Meteor.isClient) {
-  Template.register_page.events({
+  Template.register.events({
     'click #goback': function () {
       Session.set("page", "landing");
     },

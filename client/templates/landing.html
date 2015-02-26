@@ -1,7 +1,7 @@
 
-<template name="landing_page">
+<template name="landing">
 	<!-- Aparentemente no se puede usar name con guiones tipo name="landing-page" -->
 	<h1>Welcome to our landing page</h1>
-	<button id="login_btn">Login</button>
-	<button id="register_btn">Register</button>
+  <a href="{{pathFor 'login'}}">Login</a>
+  <a href="{{pathFor 'register'}}">Register</a>
 </template>

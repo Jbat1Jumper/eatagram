@@ -21,7 +21,7 @@ if (Meteor.isClient) {
       Session.set("page", "home");
   }
 
-  Template.login_page.events({
+  Template.login.events({
     'click #goback_btn': function () {
       Session.set("page", "landing");
     },

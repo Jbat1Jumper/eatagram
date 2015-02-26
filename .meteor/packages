@@ -9,3 +9,5 @@ autopublish
 insecure
 accounts-ui
 accounts-google
+iron:router
+service-configuration

@@ -1,0 +1,22 @@
+
+<template name="debug">
+	<div style="background-color: #FEE">
+		<h3>Debug panel</h3>
+		<br/>
+		<span>Users:</span>
+		<ul>
+		</ul>
+		<br/>
+		{{#if currentUser}}
+			{{#with currentUser}}
+			<span>Current logged user: "{{username}}" (pw:"{{password}}", _id:"{{_id}}")</span>
+			{{/with}}
+		{{else}}
+			<span>Theres no logged user now</span>
+		{{/if}}
+		<br/>
+		<span>Current page: "{{current_page}}"</span>
+		<br/>
+		<span>I'm so sorry [goto <a href="#" id="gotolanding">landing</a>]</span>
+	</div>
+</template>
