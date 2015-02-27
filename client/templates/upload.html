@@ -1,0 +1,16 @@
+<template name="upload">
+    <div>
+        <img src="{{image}}" height="150" alt="Your photo" />
+        <br />
+        <input type="file" accept="image/*" id="fileinput" />
+        <div id="log">
+        	<ul>
+        	{{#each logs}}
+        		<li>
+        			<p>{{message}}</p>
+        		</li>
+        	{{/each}}
+        	</ul>
+        </div>
+    </div>
+</template>
