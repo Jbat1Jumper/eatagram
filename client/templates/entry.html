@@ -1,7 +1,11 @@
 
 <template name="entry">
-
-<h4>{{userId}}</h4>
+<hr>
+<p>{{createdAt}} by {{userName}}</p>
 <p>{{summary}}</p>
-
+<p>Comments:</p>
+{{#each comments}}
+  {{>comment}}
+{{/each}}
+<p>{{>addComment}}</p>
 </template>

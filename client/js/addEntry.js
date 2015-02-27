@@ -7,7 +7,9 @@ if (Meteor.isClient) {
       Entries.insert({
         summary: event.target.summary.value,
         createdAt: new Date(),
-        userId: Meteor.userId()
+        userId: Meteor.userId(),
+        userName: Meteor.user().profile.name,
+        comments: []
       });
 
       event.target.summary.value = '';
