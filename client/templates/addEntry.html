@@ -2,7 +2,9 @@
 <template name="addEntry">
   <form id="add-entry">
     <input type="text" name="summary" placeholder="What are you eating now?">
-    <button type="submit">Add</button>
+    <button type="submit" {{disabled}} >Add</button>
   </form>
-  {{> upload}}
+  {{#with ctx}}
+  	{{> upload}}
+  {{/with}}
 </template>

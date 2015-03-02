@@ -1,11 +1,12 @@
 
 <template name="entry">
-<hr>
-<p>{{createdAt}} by {{userName}}</p>
-<p>{{summary}}</p>
-<p>Comments:</p>
-{{#each comments}}
-  {{>comment}}
-{{/each}}
-<p>{{>addComment}}</p>
+	<hr>
+	<img src={{imageurl}} height="150" alt="Your photo"/>
+	<p>{{createdAt}} by {{userName}}</p>
+	<p>{{summary}}</p>
+	<p>Comments:</p>
+	{{#each comments}}
+	  {{>comment}}
+	{{/each}}
+	<p>{{>addComment}}</p>
 </template>

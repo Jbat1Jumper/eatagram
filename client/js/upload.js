@@ -1,4 +1,4 @@
-var image = new Images.Image();
+
 var logged = [];
 function log (message) {
     console.log("Upload >" + message)
@@ -8,8 +8,13 @@ function log (message) {
     Session.set('upload-logs',logged.slice(-5));
 }
 
+Template.upload.created = function () {
+    this.image = new Images.Image();
+};
+
 Template.upload.events({
     'change #fileinput': function (evt) {
+        var instance = Template.instance();
         var fileReader = new FileReader ();
         var file = evt.target.files[0];
     
@@ -21,7 +26,7 @@ Template.upload.events({
                 .replace('{type}', file.type));
             
             var imageData = btoa(fileReader.result); // Convierte a base64
-            image.upload (imageData);
+            instance.image.upload (imageData);
             log('Upload request sent');
         };
         fileReader.onerror = function(evt){
@@ -35,8 +40,9 @@ Template.upload.events({
 
 Template.upload.helpers({
     image: function() {
-        var link = image.link.get();
-        var state = image.state.get();
+        var instance = Template.instance();
+        var link = instance.image.link.get();
+        var state = instance.image.state.get();
         if (!link) {
             if (state == 'Created')
                 return 'photo-stub.png';
@@ -46,6 +52,9 @@ Template.upload.helpers({
                 return 'photo-broken.png';
             log('imagestate seems to be Ok ($state) but there is no link!'.replace('$state', state))
         }
+        // Dirty dirty me: AddEntry pasa un objeto de contexto, y aca lo pisamos suciamente.
+        instance.data.image.set(instance.image);
+        instance.data.ready.set(true)
         return link;
     },
     logs: function() {
