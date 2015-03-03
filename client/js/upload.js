@@ -62,11 +62,11 @@ Template.upload.helpers({
         var link = instance.image.link.get();
         var state = instance.image.state.get();
         if (!link) {
-            if (state == 'Created')
+            if (state === 'Created')
                 return 'photo-stub.png';
-            if (state == 'Loading')
+            if (state === 'Loading')
                 return 'photo-loading.png';
-            if (state == 'Error')
+            if (state === 'Error')
                 return 'photo-broken.png';
             log('imagestate seems to be Ok ($state) but there is no link!'.replace('$state', state))
         }

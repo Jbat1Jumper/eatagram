@@ -36,7 +36,7 @@ if (Meteor.isClient) {
     disabled: function(){
       var context = Template.instance ().context;
       var state = context.state.get();
-      if (state == 'Done'){
+      if (state === 'Done'){
         /* Los input se bloquean por la existencia
         de un atributo disabled, ignoran su valor */
         return '';
