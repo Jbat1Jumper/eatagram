@@ -3,6 +3,7 @@ if (Meteor.isClient) {
 
   Template.addEntry.events({
     'submit #add-entry': function (event) {
+      event.preventDefault();
       var instance = Template.instance();
 
       Entries.insert({
@@ -15,13 +16,14 @@ if (Meteor.isClient) {
       });
 
       event.target.summary.value = '';
+      instance.context.clear();
       return false;
     }
   })
 
   Template.addEntry.created = function () {
     this.context = {
-      ready: ReactiveVar(false),
+      state: ReactiveVar(false),
       image: ReactiveVar({})
     }
   };
@@ -33,9 +35,13 @@ if (Meteor.isClient) {
     },
     disabled: function(){
       var context = Template.instance ().context;
-      if (! context.ready.get())
-        return 'disabled';
-      return '';
+      var state = context.state.get();
+      if (state == 'Done'){
+        /* Los input se bloquean por la existencia
+        de un atributo disabled, ignoran su valor */
+        return '';
+      }
+      return 'disabled';
     }
   });
 }

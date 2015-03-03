@@ -6,7 +6,7 @@ Template.entry.helpers({
   	var data = Template.currentData();
   	var link;
   	try{
-  	  link = data.image.link.curValue;
+  	  link = data.image.link;
   	} catch (e) {}
   	if (!link)
   		return 'photo-broken.png';

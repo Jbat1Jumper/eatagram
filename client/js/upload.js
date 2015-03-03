@@ -1,3 +1,14 @@
+/**
+ *  Esta plantilla espera que se asigne un objeto de contexto con las siguientes propiedades
+ *    image: Donde se asignará un objeto Images.Image (lib/images.js) una vez que esté cargado.
+ *    state: String que indicará el progreso de la subida de imagen.
+ *      Created     Just created
+ *      Loading     Upload sent
+ *      Error       Upload returned with an error
+ *      Done        Upload returned OK
+ *  Ambas propiedades deben ser reactivas (ReactiveVar)
+ *  Además, proveerá de un metodo clear() que se encargará de limpiar la imagen.
+ */
 
 var logged = [];
 function log (message) {
@@ -10,6 +21,13 @@ function log (message) {
 
 Template.upload.created = function () {
     this.image = new Images.Image();
+    var self = this;
+    this.data.clear = function () {
+        var oldimg = self.image
+        self.image = new Images.Image();
+        log('Pushed that creepy image');
+        oldimg.state.set('TMP');
+    }
 };
 
 Template.upload.events({
@@ -53,8 +71,8 @@ Template.upload.helpers({
             log('imagestate seems to be Ok ($state) but there is no link!'.replace('$state', state))
         }
         // Dirty dirty me: AddEntry pasa un objeto de contexto, y aca lo pisamos suciamente.
-        instance.data.image.set(instance.image);
-        instance.data.ready.set(true)
+        instance.data.image.set(instance.image.unreact());
+        instance.data.state.set(state)
         return link;
     },
     logs: function() {

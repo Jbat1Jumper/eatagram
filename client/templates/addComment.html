@@ -2,7 +2,9 @@
 
   <form id="addComment">
     <input type="text" name="text" placeholder="Comment this food">
-    <button type="submit">Send</button>
+    <button type="submit" {{disabled}} >Send</button>
   </form>
-
+  {{#with ctx}}
+  	{{> upload}}
+  {{/with}}
 </template>
