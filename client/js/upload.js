@@ -31,7 +31,7 @@ Template.upload.created = function () {
 };
 
 Template.upload.events({
-    'change #fileinput': function (evt) {
+    'change #upload': function (evt) {
         var instance = Template.instance();
         var fileReader = new FileReader ();
         var file = evt.target.files[0];
